@@ -1,0 +1,3 @@
+* Basic
+  - it creates the div where your rendered content will live with id _react_app_
+  - loads two library files where react lives
