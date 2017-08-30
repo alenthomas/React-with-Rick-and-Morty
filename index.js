@@ -1,3 +1,4 @@
+// data part starts here
 const urls = {
   'rick': 'http://rickandmorty.wikia.com/wiki/Rick_Sanchez',
   'morty': 'http://rickandmorty.wikia.com/wiki/Morty_Smith',
@@ -52,16 +53,37 @@ const quotes = [
   `"The outside world is our enemy, Morty! We're the only fehh-friends we got, Morty! It's just Rick and Morty! Ruh-ick and Morty and their adventures, Morty! Rick and Morty forever and forever, 100 years, Rick and Morty's things! Me and Rick and Morty running around and... Rick and Morty time! All day long, forever... all- a hundred days! Rick and Morty forever a hundred times! Over and over.."`
 ]
 
+// data part ends here
+
+// react part starts here
+const CharacterItem = React.createClass({
+  propTypes: {
+    name: React.PropTypes.string.isRequired,
+  },
+
+  render: function() {
+    return (
+      React.createElement('li', {},
+        React.createElement('h3', {}, this.props.name),
+        React.createElement('img', {src: this.props.pic}),
+        React.createElement('br'),
+        React.createElement('a', {href: this.props.url}, this.props.desc)
+      )
+    )
+  }
+});
+
 const listCharacters = characters
   .filter(function(character) { return character.url; })
   .map(function(character) {
-    return React.createElement('li', {},
-      React.createElement('h3', {}, character.name),
-      React.createElement('img', {src: character.pic}),
-      React.createElement('br'),
-      React.createElement('a', {href: character.url}, character.desc)
-    )
+    return React.createElement(CharacterItem, {
+      name: character.name,
+      pic: character.pic,
+      url: character.url,
+      desc: character.desc
+    })
   })
+
 
 const rootElement =
   React.createElement('div', {},
