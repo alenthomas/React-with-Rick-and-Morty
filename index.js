@@ -9,8 +9,11 @@ const imgs = {
   'rick': 'https://vignette3.wikia.nocookie.net/rickandmorty/images/a/a6/Rick_Sanchez.png/revision/latest/scale-to-width-down/376?cb=20160923150728',
   'morty': 'https://vignette4.wikia.nocookie.net/rickandmorty/images/4/41/Morty_Smith.jpg/revision/latest/scale-to-width-down/301?cb=20170217193441',
   'summer': 'https://vignette1.wikia.nocookie.net/rickandmorty/images/a/ad/Summer_is_cool.jpeg/revision/latest/scale-to-width-down/315?cb=20160919183158'
-
 }
+
+const quotes = [
+  `"The outside world is our enemy, Morty! We're the only fehh-friends we got, Morty! It's just Rick and Morty! Ruh-ick and Morty and their adventures, Morty! Rick and Morty forever and forever, 100 years, Rick and Morty's things! Me and Rick and Morty running around and... Rick and Morty time! All day long, forever... all- a hundred days! Rick and Morty forever a hundred times! Over and over.."`
+]
 
 const desc = {
   'rick': 'Rick C-137',
@@ -49,11 +52,7 @@ const characters = [
   }
 ]
 
-const quotes = [
-  `"The outside world is our enemy, Morty! We're the only fehh-friends we got, Morty! It's just Rick and Morty! Ruh-ick and Morty and their adventures, Morty! Rick and Morty forever and forever, 100 years, Rick and Morty's things! Me and Rick and Morty running around and... Rick and Morty time! All day long, forever... all- a hundred days! Rick and Morty forever a hundred times! Over and over.."`
-]
-
-const newCharacterObj = {name: "", pic: "", url: "", desc: ""}
+const newCharacterObj = { name: "", pic: "", url: "", desc: ""}
 // data part ends here
 
 // react part starts here
@@ -67,11 +66,11 @@ const CharacterItem = React.createClass({
 
   render: function() {
     return (
-      React.createElement('li', {},
-        React.createElement('h3', {}, this.props.name),
-        React.createElement('img', {src: this.props.pic}),
+      React.createElement('li', { className: 'CharacterItem'},
+        React.createElement('h3', { className: 'CharacterItem-name'}, this.props.name),
+        React.createElement('img', { src: this.props.pic}),
         React.createElement('br'),
-        React.createElement('a', {href: this.props.url}, this.props.desc)
+        React.createElement('a', { href: this.props.url}, this.props.desc)
       )
     )
   }
@@ -128,11 +127,11 @@ const listCharacters = characters
   })
 
 const rootElement =
-  React.createElement('div', {},
-    React.createElement('h1', {}, 'Rick and Morty !!'),
-    React.createElement('p', {className: 'quote-character'}, 'Rick: '),
-    React.createElement('p', {className: 'quote'}, quotes[0]),
+  React.createElement('div', { className: 'Character-div'},
+    React.createElement('h1', { className: 'Character-title'}, 'Rick and Morty !!'),
+    React.createElement('p', { className: 'quote-character'}, 'Rick: '),
+    React.createElement('p', { className: 'quote'}, quotes[0]),
     React.createElement('ul', {}, listCharacters),
-    React.createElement(AddCharacterForm, {profile: newCharacterObj}))
+    React.createElement(AddCharacterForm, { profile: newCharacterObj}))
 
 ReactDOM.render(rootElement, document.getElementById("react-app"))
