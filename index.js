@@ -49,7 +49,7 @@ const characters = [
 ]
 
 const quotes = [
-  "The outside world is our enemy, Morty! We're the only fehh-friends we got, Morty! It's just Rick and Morty! Ruh-ick and Morty and their adventures, Morty! Rick and Morty forever and forever, 100 years, Rick and Morty's things! Me and Rick and Morty running around and... Rick and Morty time! All day long, forever... all- a hundred days! Rick and Morty forever a hundred times! Over and over"
+  `"The outside world is our enemy, Morty! We're the only fehh-friends we got, Morty! It's just Rick and Morty! Ruh-ick and Morty and their adventures, Morty! Rick and Morty forever and forever, 100 years, Rick and Morty's things! Me and Rick and Morty running around and... Rick and Morty time! All day long, forever... all- a hundred days! Rick and Morty forever a hundred times! Over and over.."`
 ]
 
 const listCharacters = characters
@@ -65,8 +65,9 @@ const listCharacters = characters
 
 const rootElement =
   React.createElement('div', {},
-    React.createElement('h1', {}, "Rick and Morty !!"),
-    React.createElement('p', {}, quotes[0]),
+    React.createElement('h1', {}, 'Rick and Morty !!'),
+    React.createElement('p', {className: 'quote-character'}, 'Rick: '),
+    React.createElement('p', {className: 'quote'}, quotes[0]),
     React.createElement('ul', {}, listCharacters)
   )
 
