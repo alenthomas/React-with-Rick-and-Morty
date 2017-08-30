@@ -53,12 +53,16 @@ const quotes = [
   `"The outside world is our enemy, Morty! We're the only fehh-friends we got, Morty! It's just Rick and Morty! Ruh-ick and Morty and their adventures, Morty! Rick and Morty forever and forever, 100 years, Rick and Morty's things! Me and Rick and Morty running around and... Rick and Morty time! All day long, forever... all- a hundred days! Rick and Morty forever a hundred times! Over and over.."`
 ]
 
+const newCharacterObj = {name: "", pic: "", url: "", desc: ""}
 // data part ends here
 
 // react part starts here
 const CharacterItem = React.createClass({
   propTypes: {
     name: React.PropTypes.string.isRequired,
+    pic: React.PropTypes.string.isRequired,
+    desc: React.PropTypes.string.isRequired,
+    url: React.PropTypes.string.isRequired
   },
 
   render: function() {
@@ -71,7 +75,46 @@ const CharacterItem = React.createClass({
       )
     )
   }
-});
+})
+
+const AddCharacterForm = React.createClass({
+  propTypes: {
+    profile: React.PropTypes.object.isRequired
+  },
+
+  render: function() {
+    return (
+      React.createElement('form', {},
+        React.createElement('input', {
+          type: 'text',
+          placeholder: 'Mr. Smith',
+          value: this.props.profile.name
+        }),
+        React.createElement('br'),
+        React.createElement('input', {
+          type: 'text',
+          placeholder: 'https://some_link_to_pic.png/jpg',
+          value: this.props.profile.pic
+        }),
+        React.createElement('br'),
+        React.createElement('input', {
+          type: 'text',
+          placeholder: 'https://some_link_to_page_or_profile',
+          value: this.props.profile.url
+        }),
+        React.createElement('br'),
+        React.createElement('input', {
+          type: 'text',
+          placeholder: 'C-137 Mr.Smith',
+          value: this.props.profile.desc
+        }),
+        React.createElement('br'),
+        React.createElement('button', { type: 'submit'}, 'Add Character')
+      )
+    )
+  }
+})
+
 
 const listCharacters = characters
   .filter(function(character) { return character.url; })
@@ -84,13 +127,12 @@ const listCharacters = characters
     })
   })
 
-
 const rootElement =
   React.createElement('div', {},
     React.createElement('h1', {}, 'Rick and Morty !!'),
     React.createElement('p', {className: 'quote-character'}, 'Rick: '),
     React.createElement('p', {className: 'quote'}, quotes[0]),
-    React.createElement('ul', {}, listCharacters)
-  )
+    React.createElement('ul', {}, listCharacters),
+    React.createElement(AddCharacterForm, {profile: newCharacterObj}))
 
 ReactDOM.render(rootElement, document.getElementById("react-app"))
