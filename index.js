@@ -114,24 +114,35 @@ const AddCharacterForm = React.createClass({
   }
 })
 
+const CharacterView = React.createClass({
+  propTypes: {
+    characters: React.PropTypes.array.isRequired,
+    newCharacter: React.PropTypes.object.isRequired
+  },
 
-const listCharacters = characters
-  .filter(function(character) { return character.url; })
-  .map(function(character) {
-    return React.createElement(CharacterItem, {
-      name: character.name,
-      pic: character.pic,
-      url: character.url,
-      desc: character.desc
-    })
-  })
+  render: function() {
+    const characterItems = this.props.characters
+      .filter(function(character) { return character.url })
+      .map(function(character) { return React.createElement(CharacterItem, character) })
 
-const rootElement =
-  React.createElement('div', { className: 'Character-div'},
-    React.createElement('h1', { className: 'Character-title'}, 'Rick and Morty !!'),
-    React.createElement('p', { className: 'quote-character'}, 'Rick: '),
-    React.createElement('p', { className: 'quote'}, quotes[0]),
-    React.createElement('ul', {}, listCharacters),
-    React.createElement(AddCharacterForm, { profile: newCharacterObj}))
+    return (
+      React.createElement('div', { className: 'Character-div'},
+        React.createElement('h1', { className: 'Character-title'}, 'Rick and Morty !!'),
+        React.createElement('p', { className: 'quote-character'}, 'Rick: '),
+        React.createElement('p', { className: 'quote'}, quotes[0]),
+        React.createElement('ul', { className: 'Character-list'}, characterItems),
+        React.createElement(AddCharacterForm, { profile: this.props.newCharacter})
+      )
+    )
+  }
+})
 
-ReactDOM.render(rootElement, document.getElementById("react-app"))
+ReactDOM.render(
+  React.createElement(CharacterView,
+    {
+      characters: characters,
+      newCharacter: newCharacterObj
+    }
+  ),
+  document.getElementById('react-app')
+)
