@@ -1,29 +1,41 @@
 .Character-title {
-    
+    font-size: 24px;
+    padding: 0 24px;
 }
 
 .quote-character {
     display: inline;
-    margin-top: 1em;
-    margin-bottom: 1em;
-    margin-left: 0;
-    margin-right: 0;
     font-weight: bolder;
 }
 .quote {
     display: inline;
-    margin-top: 1em;
-    margin-bottom: 1em;
-    margin-left: 0;
-    margin-right: 0;
 }		 
 
 .Character-list {
+    list-style-type: none;
+    padding: 20px;
 }
 
 .CharacterItem {
-    background: #cee1ea
+    background: #cee1ea;
+    padding: 5px;
+    margin-left: 35px;
 }
 
 .CharacterItem-name {
+    text-align: left;
+    font-size: 16px;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+.CharacterItem a {
+    font-size: 14px;
+    margin-top: 4px;
+}
+
+img {
+    margin-left: 20px;
+    border-style: outset;
+    border-color: black;
 }
