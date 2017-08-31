@@ -79,34 +79,58 @@ const CharacterItem = React.createClass({
 
 const CharacterForm = React.createClass({
   propTypes: {
-    profile: React.PropTypes.object.isRequired
+    profile: React.PropTypes.object.isRequired,
+    onChange: React.PropTypes.func.isRequired
+  },
+
+  onNameInput: function(e) {
+    this.props.onChange(Object.assign({}, this.props.profile, {name: e.target.value}))
+  },
+
+  onUrlInput: function(e) {
+    this.props.onChange(Object.assign({}, this.props.profile, {url: e.target.value}))
+  },
+
+  onPicInput: function(e) {
+    this.props.onChange(Object.assign({}, this.props.profile, {pic: e.target.value}))
+  },
+
+  onDescInput: function(e) {
+    this.props.onChange(Object.assign({}, this.props.profile, {desc: e.target.value}))
   },
 
   render: function() {
+    const oldCharacter = this.props.profile
+    const onChange = this.props.onChange
+
     return (
       React.createElement('form', {className: 'CharacterForm'},
         React.createElement('input', {
           type: 'text',
           placeholder: 'Mr. Smith',
-          value: this.props.profile.name
+          value: this.props.profile.name,
+          onChange: this.onNameInput
         }),
         React.createElement('br'),
         React.createElement('input', {
           type: 'text',
           placeholder: 'full url to profile/page',
-          value: this.props.profile.url
+          value: this.props.profile.url,
+          onChange: this.onUrlInput
         }),
         React.createElement('br'),
         React.createElement('input', {
           type: 'text',
           placeholder: 'full url to img.png/jpeg',
-          value: this.props.profile.pic
+          value: this.props.profile.pic,
+          onChange: this.onPicInput
         }),
         React.createElement('br'),
         React.createElement('input', {
           type: 'text',
           placeholder: 'C-137 Mr.Smith',
-          value: this.props.profile.desc
+          value: this.props.profile.desc,
+          onChange: this.onDescInput
         }),
         React.createElement('br'),
         React.createElement('button', { type: 'submit'}, 'Add Character')
@@ -132,7 +156,10 @@ const CharacterView = React.createClass({
         React.createElement('p', { className: 'quote-character'}, 'Rick: '),
         React.createElement('p', { className: 'quote'}, quotes[0]),
         React.createElement('ul', { className: 'Character-list'}, characterItems),
-        React.createElement(CharacterForm, { profile: this.props.newCharacter})
+        React.createElement(CharacterForm, {
+          profile: this.props.newCharacter,
+          onChange: function(newCharacter) { console.log(newCharacter) }
+        })
       )
     )
   }
