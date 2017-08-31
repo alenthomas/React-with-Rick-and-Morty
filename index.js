@@ -52,7 +52,7 @@ const characters = [
   }
 ]
 
-//const newCharacterObj = { name: "", pic: "", url: "", desc: ""}
+const newCharacterObj = { name: "", pic: "", url: "", desc: ""}
 
 // data part ends here
 
@@ -100,8 +100,6 @@ const CharacterForm = React.createClass({
   },
 
   render: function() {
-    const oldCharacter = this.props.profile
-    const onChange = this.props.onChange
 
     return (
       React.createElement('form', {className: 'CharacterForm'},
@@ -142,7 +140,8 @@ const CharacterForm = React.createClass({
 const CharacterView = React.createClass({
   propTypes: {
     characters: React.PropTypes.array.isRequired,
-    newCharacter: React.PropTypes.object.isRequired
+    newCharacter: React.PropTypes.object.isRequired,
+    onAddNewCharacter: React.PropTypes.func.isRequired
   },
 
   render: function() {
@@ -158,19 +157,33 @@ const CharacterView = React.createClass({
         React.createElement('ul', { className: 'Character-list'}, characterItems),
         React.createElement(CharacterForm, {
           profile: this.props.newCharacter,
-          onChange: function(newCharacter) { console.log(newCharacter) }
+          onChange: this.props.onAddNewCharacter
         })
       )
     )
   }
 })
 
-ReactDOM.render(
-  React.createElement(CharacterView,
-    {
-      characters: characters,
-      newCharacter: {}//newCharacterObj
-    }
-  ),
-  document.getElementById('react-app')
-)
+function addNewCharacter(character) {
+  setState({ newCharacter: character})
+}
+
+const state = {}
+
+function setState(character) {
+  Object.assign(state, character)
+
+  ReactDOM.render(
+    React.createElement(CharacterView,
+      Object.assign({}, state,
+        { onAddNewCharacter: addNewCharacter
+        })
+    ),
+    document.getElementById('react-app')
+  )
+}
+
+setState({
+  characters: characters,
+  newCharacter: newCharacterObj
+})
