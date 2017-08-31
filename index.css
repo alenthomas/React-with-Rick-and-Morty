@@ -1,3 +1,7 @@
+.Character-title {
+    
+}
+
 .quote-character {
     display: inline;
     margin-top: 1em;
@@ -13,3 +17,13 @@
     margin-left: 0;
     margin-right: 0;
 }		 
+
+.Character-list {
+}
+
+.CharacterItem {
+    background: #cee1ea
+}
+
+.CharacterItem-name {
+}
