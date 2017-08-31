@@ -52,7 +52,8 @@ const characters = [
   }
 ]
 
-const newCharacterObj = { name: "", pic: "", url: "", desc: ""}
+//const newCharacterObj = { name: "", pic: "", url: "", desc: ""}
+
 // data part ends here
 
 // react part starts here
@@ -76,14 +77,14 @@ const CharacterItem = React.createClass({
   }
 })
 
-const AddCharacterForm = React.createClass({
+const CharacterForm = React.createClass({
   propTypes: {
     profile: React.PropTypes.object.isRequired
   },
 
   render: function() {
     return (
-      React.createElement('form', {},
+      React.createElement('form', {className: 'CharacterForm'},
         React.createElement('input', {
           type: 'text',
           placeholder: 'Mr. Smith',
@@ -92,14 +93,14 @@ const AddCharacterForm = React.createClass({
         React.createElement('br'),
         React.createElement('input', {
           type: 'text',
-          placeholder: 'https://some_link_to_pic.png/jpg',
-          value: this.props.profile.pic
+          placeholder: 'full url to profile/page',
+          value: this.props.profile.url
         }),
         React.createElement('br'),
         React.createElement('input', {
           type: 'text',
-          placeholder: 'https://some_link_to_page_or_profile',
-          value: this.props.profile.url
+          placeholder: 'full url to img.png/jpeg',
+          value: this.props.profile.pic
         }),
         React.createElement('br'),
         React.createElement('input', {
@@ -131,7 +132,7 @@ const CharacterView = React.createClass({
         React.createElement('p', { className: 'quote-character'}, 'Rick: '),
         React.createElement('p', { className: 'quote'}, quotes[0]),
         React.createElement('ul', { className: 'Character-list'}, characterItems),
-        React.createElement(AddCharacterForm, { profile: this.props.newCharacter})
+        React.createElement(CharacterForm, { profile: this.props.newCharacter})
       )
     )
   }
@@ -141,7 +142,7 @@ ReactDOM.render(
   React.createElement(CharacterView,
     {
       characters: characters,
-      newCharacter: newCharacterObj
+      newCharacter: {}//newCharacterObj
     }
   ),
   document.getElementById('react-app')
